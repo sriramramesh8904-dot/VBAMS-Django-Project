@@ -53,4 +53,4 @@ urlpatterns = [
   path('Driver/BookingReport', driverviews.Between_Date_Booking_Report, name='booking-report'),
   
 
-]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+]
