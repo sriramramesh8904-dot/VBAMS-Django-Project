@@ -1,0 +1,27 @@
+{% extends 'userbase.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Carousel Start -->
+
+    <!-- Carousel End -->
+
+
+    <!-- Service Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-4">
+                <h1>Thank You for Your Booking</h1>
+                {% if booking %}
+                    <p>Your booking number is: {{ booking.bookingnumber }}</p>
+                {% else %}
+                    <p>No bookings found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+
+
+    <!-- Booking End -->
+    {% endblock %}

@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <div class="row">
+
+      <div class="col-lg-12 stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">View Booking Request Details</h4>
+            
+            <div class="table-responsive pt-3">
+                
+              <table class="table table-bordered">
+                <h4 class="card-title">Booking Number: {{brd.bookingnumber}}</h4>
+                <thead>
+                    <tr>
+            
+                        <th>Name</th>
+                        <td>{{brd.fullname}}</td>
+                        <th>Contact Number</th>
+                        <td>{{brd.mobilenumber}}</td>
+                      </tr>
+                      <tr>
+            
+                        <th>Email</th>
+                        <td>{{brd.email}}</td>
+                        <th>Pickup Location</th>
+                        <td>{{brd.pickuplocation}}</td>
+                      </tr>
+                      <tr>
+            
+                        <th>Destination</th>
+                        <td>{{brd.destination}}</td>
+                        <th>Pickup Date</th>
+                        <td>{{brd.pickupdate}}</td>
+                      </tr>
+                      <tr>
+            
+                        <th>Pickup Time</th>
+                        <td>{{brd.pickuptime}}</td>
+                        <th>Date of Booking</th>
+                        <td>{{brd.bookingdate_at}}</td>
+                      </tr>
+
+                      <tr>
+                              
+                        {% if brd.status == '' %}
+                        <th>Remark</th>
+                        <td>Not Updatet Yet</td>
+                        {% else %}
+                        <tr>
+                        <th>Remark</th>
+                        <td>{{ brd.remark}}</td>{% endif %}
+                        
+                          {% if brd.status == '' %}
+                          <th>Staus</th>
+                          <td>Not Updatet Yet</td>
+                          {% else %}
+                          <th>Status</th>
+                          <td>{{ brd.status}}</td> {% endif %}
+                          </tr>
+                         <tr>
+                          {% if brd.status == '' %}
+                          <th>Assign To</th>
+                          <td colspan="4">Not Updatet Yet</td>
+                          {% elif brd.status == 'Rejected' %}
+                          <th>Assign To</th>
+                          <td colspan="4">Booking Request Rejected</td>
+                          {% else %}
+                          <th>Assign To</th>
+                          <td colspan="4">{{ brd.assignto.admin.first_name}} {{ brd.assignto.admin.last_name}}</td> {% endif %}
+                          </tr>
+                          
+                </tbody>
+              </table>
+              {% if brd.status == ''  %}
+              <p align="center"  style="padding-top: 20px">                            
+                <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Take Action</button></p>{% endif %}  
+            
+            
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                       <div class="modal-content">
+                        <div class="modal-header">
+                                                                      <h5 class="modal-title" id="exampleModalLabel">Take Action</h5>
+                                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                          <span aria-hidden="true">&times;</span>
+                                                                      </button>
+                                                                  </div>
+                                                                  <div class="modal-body">
+                                                                  <table class="table table-bordered table-hover data-tables">
+                  
+                                                   <form method="POST" action="{% url 'update_request' brd.id %}">
+                                                    {% csrf_token %}
+                  
+                                                  
+                                                 
+                       <tr>
+                      <th>Remark :</th>
+                      <td>
+                      <textarea name="remark" placeholder="Remark" rows="12" cols="14" class="form-control wd-450" required="true"></textarea></td>
+                     
+                    </tr> 
+                       
+                    <tr>
+                      <th>Status :</th>
+                      <td>
+                  
+                     <select name="status" class="form-control wd-450" required="true" >
+                       <option value="Approved" selected="true">Approved</option>
+                       <option value="Rejected">Rejected</option>
+                       
+                     </select></td>
+                    </tr>
+                    <tr>
+                        <th>Assign To :</th>
+                        <td>
+                    
+                       <select name="assignto" class="form-control wd-450">
+                        <option value="">Choose Driver</option>
+                        {% for i in drivers %}
+                        
+                         <option value="{{i.id}}">{{i.admin.first_name}} {{i.admin.last_name}}({{i.driverid}})</option>{% endfor %}
+                        
+                         
+                       </select></td>
+                      </tr>
+                  </table>
+                  </div>
+                  <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                   <button type="submit" name="submit" class="btn btn-primary">Update</button>
+                    
+                    </form>
+                    
+                  
+                  </div>
+                  
+                                        
+                                          </div>
+                                      </div>
+                  
+                              </div>
+            
+                
+
+            </div>
+            
+          </div>
+       
+        </div>
+      </div>
+    </div>
+  </div>{% endblock %}
+
+ 

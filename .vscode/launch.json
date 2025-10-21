@@ -1,0 +1,60 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        // This configuration starts the Django development server.
+        {
+            "name": "Python: Django",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runserver"
+            ],
+            "django": true,
+            "justMyCode": false
+        },
+        // This configuration starts the Django server to be accessible on your local network.
+        {
+            "name": "Python: Django (Network)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runserver",
+                "0.0.0.0:8000"
+            ],
+            "django": true,
+            "justMyCode": false
+        },
+        // This configuration runs a custom Django management command.
+        // Replace "my_custom_command" with the name of your command.
+        {
+            "name": "Python: Django Management Command",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "my_custom_command"
+            ],
+            "django": true,
+            "justMyCode": false
+        },
+        // This configuration launches Chrome against the running Django server.
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8000",
+            "webRoot": "${workspaceFolder}"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Run Django and Launch Chrome",
+            "configurations": ["Python: Django", "Launch Chrome against localhost"]
+        }
+    ]
+}

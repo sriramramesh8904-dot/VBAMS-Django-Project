@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.user_type == '1' %}
+<div class="content-wrapper">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="mb-0 font-weight-bold">{{user.first_name}} {{user.last_name}}</h3>
+        <p>Your last login: {{user.last_login}}.</p>
+      </div>
+   
+    </div>
+    <div class="row  mt-3">
+      <div class="col-xl-5 d-flex grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between">
+              <h4 class="card-title mb-3">Total Driver </h4>
+              <strong>{{driver_count}}</strong>
+            </div>
+            <br>
+            <a href="">View Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 d-flex grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between">
+              <h4 class="card-title mb-3">New Request</h4>
+              <strong>{{newbookingcount}}</strong>
+            </div>
+            <br>
+            <a href="{% url 'new_booking_request' %}">View Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 d-flex grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between">
+              <h4 class="card-title mb-3">Approved Request</h4>
+              <strong>{{approvedbookingcount}}</strong>
+            </div>
+            <br>
+            <a href="{% url 'approved_booking_request' %}">View Details</a>
+            <div class="row">
+              <div class="col-12">
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row  mt-3">
+      <div class="col-xl-5 d-flex grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between">
+              <h4 class="card-title mb-3">Driver On The Way</h4>
+              <strong>{{otwbookingcount}}</strong>
+            </div>
+            <br>
+            <a href="{% url 'ontheway_booking_request' %}">View Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 d-flex grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between">
+              <h4 class="card-title mb-3">Completed Requset</h4>
+              <strong>{{compbookingcount}}</strong>
+            </div>
+            <br>
+            <a href="{% url 'completedtask_booking_request' %}">View Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 d-flex grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between">
+              <h4 class="card-title mb-3">Rejected Request</h4>
+              <strong>{{rejbookingcount}}</strong>
+            </div>
+            <br>
+              <a href="{% url 'rejected_booking_request' %}">View Details</a>
+            <div class="row">
+              <div class="col-12">
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else  %}
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="mb-0 font-weight-bold">{{user.first_name}} {{user.last_name}}</h3>
+        <p>Your last login: {{user.last_login}}.</p>
+      </div>
+   
+    </div>
+    <div class="row  mt-3">
+      
+    
+      <div class="col-xl-4 d-flex grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between">
+              <h4 class="card-title mb-3">Assign Request</h4>
+              <strong>{{approvedbookingcount}}</strong>
+            </div>
+            <br>
+            <a href="{% url 'assign_booking_request' %}">View Details</a>
+            <div class="row">
+              <div class="col-12">
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-5 d-flex grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between">
+              <h4 class="card-title mb-3">Driver On The Way</h4>
+              <strong>{{otwbookingcount}}</strong>
+            </div>
+            <br>
+            <a href="{% url 'otw_booking_request' %}">View Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 d-flex grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between">
+              <h4 class="card-title mb-3">Completed Request</h4>
+              <strong>{{compbookingcount}}</strong>
+            </div>
+            <br>
+            <a href="{% url 'completed_booking_request' %}">View Details</a>
+          </div>
+        </div>
+      </div>
+    
+      
+        
+      
+      </div>
+    </div>
+    
+   
+  
+  {% endif %}
+  
+  {% endblock %}

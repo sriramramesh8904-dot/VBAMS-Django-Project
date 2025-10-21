@@ -1,0 +1,154 @@
+{% load static %}
+{% if user.user_type == '1' %}
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li class="nav-item">
+        <div class="d-flex sidebar-profile">
+          <div class="sidebar-profile-image">
+            <img src="{{user.profile_pic.url}}" alt="image">
+            <span class="sidebar-status-indicator"></span>
+          </div>
+          <div class="sidebar-profile-name">
+            <p class="sidebar-name">
+                {{user.first_name}} {{user.last_name}}
+            </p>
+            <p class="sidebar-designation">
+              Welcome
+            </p>
+          </div>
+        </div>
+        
+        <p class="sidebar-menu-title">Dash menu</p>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'dashboard' %}">
+          <i class="typcn typcn-device-desktop menu-icon"></i>
+          <span class="menu-title">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+          <i class="typcn typcn-briefcase menu-icon"></i>
+          <span class="menu-title">Driver</span>
+          <i class="typcn typcn-chevron-right menu-arrow"></i>
+        </a>
+        <div class="collapse" id="ui-basic">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{% url 'add_driver' %}">Add Driver</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'manage_driver' %}">Manage Driver</a></li>
+            
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+          <i class="typcn typcn-film menu-icon"></i>
+          <span class="menu-title">Booking Request</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="form-elements">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"><a class="nav-link" href="{% url 'new_booking_request' %}">New Request</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'approved_booking_request' %}">Approved Request</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'rejected_booking_request' %}">Rejected Request</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'all_booking_request' %}">All Request</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+          <i class="typcn typcn-chart-pie-outline menu-icon"></i>
+          <span class="menu-title">Driver Response</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="charts">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{% url 'ontheway_booking_request' %}">On The Way</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'completedtask_booking_request' %}">Task Completed</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'search_booking_request' %}">
+          <i class="typcn typcn-document-text menu-icon"></i>
+          <span class="menu-title">Search</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+          <i class="typcn typcn-th-small-outline menu-icon"></i>
+          <span class="menu-title">Report</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="tables">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{% url 'booking-bwdate-report' %}">Booking Report</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'driverwise-booking-report' %}">Driverwise Report</a></li>
+          </ul>
+        </div>
+      </li>
+   
+      
+    
+    </ul>
+   
+  </nav>
+  {% else  %}
+
+  <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li class="nav-item">
+        <div class="d-flex sidebar-profile">
+          <div class="sidebar-profile-image">
+            <img src="{{user.profile_pic.url}}" alt="image">
+            <span class="sidebar-status-indicator"></span>
+          </div>
+          <div class="sidebar-profile-name">
+            <p class="sidebar-name">
+                {{user.first_name}} {{user.last_name}}
+            </p>
+            <p class="sidebar-designation">
+              Welcome
+            </p>
+          </div>
+        </div>
+        
+        <p class="sidebar-menu-title">Dash menu</p>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'dashboard' %}">
+          <i class="typcn typcn-device-desktop menu-icon"></i>
+          <span class="menu-title">Dashboard</span>
+        </a>
+      </li>
+     
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+          <i class="typcn typcn-film menu-icon"></i>
+          <span class="menu-title">Assign Booking</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="form-elements">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"><a class="nav-link" href="{% url 'assign_booking_request' %}">Assign Request</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'otw_booking_request' %}">On the way</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'completed_booking_request' %}">Task Completed</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'all_assign_booking_request' %}">All Assign Request</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'search_booking' %}">
+          <i class="typcn typcn-document-text menu-icon"></i>
+          <span class="menu-title">Search</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'booking-report' %}">
+          <i class="typcn typcn-document-text menu-icon"></i>
+          <span class="menu-title">Report</span>
+        </a>
+      </li>
+    </ul>
+  
+  </nav>{% endif %}

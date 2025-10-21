@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Vehicle Breakdown Assistance Management System</title>
+    <!-- base:css -->
+    <link rel="stylesheet" href="{% static 'assets/vendors/typicons.font/font/typicons.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css'%}">
+    <!-- endinject --> 
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{% static 'assets/css/vertical-layout-light/style.css'%}">
+    <!-- endinject -->
+   
+  </head>
+  <body>
+  
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      {% include 'includes/header.html' %}
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+    
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        {% include 'includes/sidebar.html' %}
+        <!-- partial -->
+        <div class="main-panel">
+            {% block content %}
+            {% endblock %}
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          {% include 'includes/footer.html' %}
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- base:js -->
+    <script src="{% static 'assets/vendors/js/vendor.bundle.base.js'%}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="{% static 'assets/js/off-canvas.js'%}"></script>
+    <script src="{% static 'assets/js/hoverable-collapse.js'%}"></script>
+    <script src="{% static 'assets/js/template.js'%}"></script>
+    <script src="{% static 'assets/js/settings.js'%}"></script>
+    <script src="{% static 'assets/js/todolist.js'%}"></script>
+    <!-- endinject -->
+    <!-- plugin js for this page -->
+    <script src="{% static 'assets/vendors/progressbar.js/progressbar.min.js'%}"></script>
+    <script src="{% static 'assets/vendors/chart.js/Chart.min.js'%}"></script>
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+    <script src="{% static 'assets/js/dashboard.js'%}"></script>
+    <!-- End custom js for this page-->
+  </body>
+</html>
