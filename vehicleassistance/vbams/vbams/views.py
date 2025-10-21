@@ -4,6 +4,7 @@ from django.contrib.auth import  logout,login,authenticate
 from django.contrib.auth.decorators import login_required
 from vbamsapp.models import CustomUser,Booking,Driver
 from django.contrib.auth import get_user_model
+from django.db.models import Count, Q
 import random
 User = get_user_model()
 
@@ -44,21 +45,22 @@ def doLogin(request):
 
 login_required(login_url='/')
 def DASHBOARD(request):
-    driver_count = Driver.objects.all().count
-    newbookingcount = Booking.objects.filter(status='').count
-    approvedbookingcount = Booking.objects.filter(status='Approved').count
-    otwbookingcount = Booking.objects.filter(status='On The Way').count
-    compbookingcount = Booking.objects.filter(status='Completed').count
-    rejbookingcount = Booking.objects.filter(status='Rejected').count
+    driver_count = Driver.objects.count()
+
+    # More efficient way to get all counts in one query
+    booking_counts = Booking.objects.aggregate(
+        newbookingcount=Count('id', filter=Q(status='')),
+        approvedbookingcount=Count('id', filter=Q(status='Approved')),
+        otwbookingcount=Count('id', filter=Q(status='On The Way')),
+        compbookingcount=Count('id', filter=Q(status='Completed')),
+        rejbookingcount=Count('id', filter=Q(status='Rejected')),
+    )
+
     context = {
         'driver_count':driver_count,
-        'newbookingcount':newbookingcount,
-        'approvedbookingcount':approvedbookingcount,
-        'otwbookingcount':otwbookingcount,
-        'compbookingcount':compbookingcount,
-        'rejbookingcount':rejbookingcount,
-
     }
+    context.update(booking_counts)
+
     return render(request,'dashboard.html',context)
 
 

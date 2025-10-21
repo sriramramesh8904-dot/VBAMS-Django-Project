@@ -1,4 +1,6 @@
-// stylelint-disable property-disallowed-list
+git remote add origin https://github.com/sriramramesh8904-dot/VBAMS-Django-Project.git
+
+git push -u origin main// stylelint-disable property-disallowed-list
 @mixin transition($transition...) {
   @if length($transition) == 0 {
     $transition: $transition-base;

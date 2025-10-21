@@ -11,7 +11,7 @@ from datetime import datetime
 from django.db.models import Q
 User = get_user_model()
 
-login_required(login_url='/')
+@login_required(login_url='/')
 def ADD_DRIVER(request):
     
     if request.method == "POST":
@@ -89,7 +89,7 @@ def DELETE_DRIVER(request, id):
     return redirect('manage_driver')
 
 
-login_required(login_url='/')
+@login_required(login_url='/')
 def UPDATE_DRIVER(request,id):
     drivers = Driver.objects.get(id=id)
     
@@ -100,7 +100,7 @@ def UPDATE_DRIVER(request,id):
     return render(request,'admin/edit-driver-details.html',context)
 
 
-login_required(login_url='/')
+@login_required(login_url='/')
 def UPDATE_DRIVER_DETAILS(request):
     if request.method == 'POST':
         dri_id = request.POST.get('d_id')
@@ -214,7 +214,7 @@ def ALLBOOKINGREQUEST(request):
 
 
 
-login_required(login_url='/')
+@login_required(login_url='/')
 def UPDATE_REQUEST(request, id):
     # Fetch the booking details with the given id
     bookingdetails = get_object_or_404(Booking, id=id)
