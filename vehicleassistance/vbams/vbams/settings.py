@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +29,10 @@ SECRET_KEY = 'django-insecure-y#mq69fj72!x4abx%g106(-*&h_+_6lwc7azdd%y(4(e8te^#w
 DEBUG = False
 
 # Replace 'yourdomain.com' with your actual domain name
-ALLOWED_HOSTS = ['yourdomain.com', 'www.yourdomain.com', '127.0.0.1']
+ALLOWED_HOSTS = []
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -82,15 +86,11 @@ WSGI_APPLICATION = 'vbams.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'vbamspythondb',
-        'USER': 'root',
-        'PASSWORD': 'Sriram@8904',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        
-    }
+    'default': dj_database_url.config(
+        # Replace this with your local development database URL if needed
+        default='postgres://user:pass@localhost/dbname',
+        conn_max_age=600
+    )
 }
 
 
@@ -146,4 +146,3 @@ AUTH_USER_MODEL = 'vbamsapp.CustomUser'
 # Media files (user-uploaded files)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-AUTH_USER_MODEL = 'vbamsapp.CustomUser'

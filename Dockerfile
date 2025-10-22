@@ -11,10 +11,10 @@ WORKDIR /app
 
 # Install system dependencies that might be needed by your Python packages
 # (e.g., mysqlclient needs libmysqlclient-dev)
-RUN apt-get update && apt-get install -y default-libmysqlclient-dev gcc && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y libpq-dev gcc && rm -rf /var/lib/apt/lists/*
 
 # Copy the requirements file into the container at /app
-COPY requirements.txt .
+COPY ./vehicleassistance/vbams/requirements.txt .
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
@@ -22,9 +22,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the Django project into the container at /app
 COPY ./vehicleassistance/vbams/ .
 
-# Expose port 8000 to the outside world
-EXPOSE 8000
+# Expose the port Render provides
+EXPOSE 10000
 
 # Define the command to run your application using Gunicorn
 # This will be the entrypoint for your container
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "vbams.wsgi"]
+CMD ["gunicorn", "--bind", "0.0.0.0:10000", "vbams.wsgi"]

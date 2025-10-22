@@ -1,0 +1,21 @@
+# Secrets
+# Ignore the .env file containing secrets.
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Django specific
+*.sqlite3
+staticfiles/
+media/
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# IDE / Editor specific
+.vscode/
+.idea/
