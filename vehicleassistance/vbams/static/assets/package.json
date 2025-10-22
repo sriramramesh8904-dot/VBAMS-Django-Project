@@ -89,7 +89,9 @@
     "run-sequence": "^2.2.1"
   },
   "scripts": {
+    "start": "gunicorn VBAMS_Django_Project.wsgi:application --bind 0.0.0.0:$PORT",
     "test": "echo \"Error: no test specified\" && exit 1"
+
   },
   "author": "bootstrapdash",
   "url": "http://www.bootstrapdash.com/",

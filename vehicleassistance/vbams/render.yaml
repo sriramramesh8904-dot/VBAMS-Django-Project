@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: vbams-django
+    env: python
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    startCommand: "gunicorn vbams.wsgi:application --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: SECRET_KEY
+        value: your-secret-key
+      - key: DATABASE_URL
+        value: mysql://username:password@host:port/dbname
+      - key: DJANGO_SETTINGS_MODULE
+        value: vbams.settings
