@@ -20,7 +20,10 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the Django project into the container at /app
-COPY ./vehicleassistance/vbams/ .
+COPY ./vehicleassistance/vbams/ /app/
+
+# Collect static files
+RUN python manage.py collectstatic --no-input
 
 # Expose the port Render provides
 EXPOSE 10000
