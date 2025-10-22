@@ -14,13 +14,13 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y libpq-dev gcc && rm -rf /var/lib/apt/lists/*
 
 # Copy the requirements file into the container at /app
-COPY ./vehicleassistance/vbams/requirements.txt .
+COPY ./vehicleassistance/vbams/requirements.txt /app/requirements.txt
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the Django project into the container at /app
-COPY ./vehicleassistance/vbams/ .
+COPY ./vehicleassistance/vbams/ /app/
 
 # Expose the port Render provides
 EXPOSE 10000
